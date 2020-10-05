@@ -1,0 +1,49 @@
+.title {
+    font-family: $font-family-bold;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 85px;
+    line-height: 110%;
+    text-align: center;
+    letter-spacing: 0.05em;
+    color: $color-primary;
+    text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.5);
+    z-index: 5;
+    @include opacity(0);
+    @include transition($default-transition);
+    max-width: 500px;
+    margin: 0 auto;
+    top: 15%;
+    text-transform: uppercase;
+    text-shadow: 2px 4px 0px #ADCFF1;
+    display: block;
+
+    &.jp, &.kr {
+        font-family: $font-family-bold !important;
+    }
+
+    @media screen and (max-width: $fourth-width-breakpoint) {
+        font-size: 60px;
+    }
+
+    @media screen and (min-width: $fourth-width-breakpoint) and (max-width: $second-width-breakpoint) {
+        font-size: 70px;
+    }
+
+    @media screen and (min-width: $first-width-breakpoint) {
+        max-width: 100%;
+        font-size: 90px;
+    }
+}
+
+.subheader {
+    position: relative;
+    display: block;
+    font-family: $font-family-heading;
+    font-size: 20px;
+    line-height: 44px;
+    text-align: center;
+    color: $color-primary;
+    margin: 0 15%;
+    top: 0;
+}

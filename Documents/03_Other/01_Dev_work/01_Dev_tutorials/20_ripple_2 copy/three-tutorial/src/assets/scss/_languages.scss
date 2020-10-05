@@ -1,0 +1,14 @@
+* {
+    &.jp {
+        font-family: "HiraKakuProN-W3", "Meiryo", "MS P Gothic", sans-serif !important;
+    }
+
+    &.kr {
+        font-family: "Nanum Gothic", "ArialUnicodeMS", Arial, clean, sans-serif !important;
+    }
+
+    &.zh,
+    &.zf {
+        font-family: "STHeitiSC-Light", "ArialUnicodeMS", Arial, clean, sans-serif !important;
+    }
+}

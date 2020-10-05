@@ -1,0 +1,185 @@
+@import "./breakpoints.scss";
+
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* Common colours */
+$color-primary: #ffffff;
+$color-background: #111111;
+
+/* Default transition */
+$default-transition: opacity 0.5s ease-in-out;
+
+/* Opacity */
+@mixin opacity($value) {
+    $ie-value: $value * 100;
+    opacity: $value;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+$ie-value+")";
+    filter: alpha(opacity=$ie-value);
+}
+
+/* Background cover */
+@mixin background-cover() {
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+// Note: keeping this as an example
+// @mixin background-image($assetPath: null, $showOverlay: true) {
+//     $path: null;
+//     @if ($assetPath) {
+//         $path: $assetPath;
+//     } @else {
+//         $path: '../assets/img';
+//     }
+
+//     background-image: url("#{$path}/background-tile.jpg");
+//     background-size: 13%;
+//     background-position: center;
+
+//     @media screen and (min-width: $first-width-breakpoint) {
+//         background-size: 5%;
+//     }
+//     @if ($showOverlay) {
+//         &:after {
+//             content: '';
+//             @include background-cover();
+//             background-color: rgba(0, 0, 0, 0.4);
+//             z-index: -1;
+//         }
+
+//         &:before {
+//             content: '';
+//             @include background-cover();
+//             background-image: url("#{$path}/mobile-shadow.png");
+//             pointer-events: none;
+//             @media screen and (min-width: $first-width-breakpoint) {
+//                 background-image: url("#{$path}/desktop-shadow.png");
+//             }
+//         }
+//     }
+// }
+
+@mixin background-overlay()  {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.5);
+    left: 0;
+    position: absolute;
+}
+
+/* Transitions */
+@mixin transition($args...) {
+    -webkit-transition: $args;
+    -moz-transition: $args;
+    -ms-transition: $args;
+    -o-transition: $args;
+    transition: $args;
+}
+
+/* fade animation */
+@keyframes fade {
+    0% { opacity: 0; }
+    20% { opacity: 1; } /* 20% of 40 seconds = 8 seconds */
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@mixin animate-fade() {
+    animation: 40s ease 0s normal forwards infinite fade;
+}
+
+/* Overlay */
+@mixin overlay() {
+    background-color: rgba(0, 0, 0, 0.25);
+    color: $color-primary;
+    font-family: $font-family-heading;
+    cursor: pointer;
+    -webkit-user-select: none;
+    @include background-cover();
+    @include opacity(1);
+    @include transition($default-transition);
+}
+
+/* Linear gradient */
+@mixin linear-gradient($start, $end) {
+    background: $start; /* Old browsers */
+    background: -moz-linear-gradient(top, $start 0%, $end 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, $start 0%, $end 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, $start 0%, $end 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$start, endColorstr=$end,GradientType=0 ); /* IE6-9 */
+}
+
+@mixin background-cover-opaque() {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    @include linear-gradient(#334B68, #AAB7C1);
+}
+
+@mixin center-align() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Font families */
+$font-family-body: 'Styrene Regular';
+$font-family-heading: 'Styrene Medium';
+$font-family-bold: 'Styrene Bold';
+$icons: 'Burberry-Icons';
+$font-letter-spacing: 0.6px;
+$small-letter-spacing: 0.02em;
+$info-header-size: 1.5em;
+
+/* Fonts */
+@font-face {
+    font-family: "Styrene Regular";
+    src: url("//common.static.burberry.com/fonts/v5/BBY-Styrene/BurberryStyreneB-Regular.eot");
+    src: url("//common.static.burberry.com/fonts/v5/BBY-Styrene/BurberryStyreneB-Regular.eot?#iefix") format("embedded-opentype"),url("//common.static.burberry.com/fonts/v5/BBY-Styrene/BurberryStyreneB-Regular.woff") format("woff"),url("//common.static.burberry.com/fonts/v5/BBY-Styrene/BurberryStyreneB-Regular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 400;
+    -webkit-font-smoothing:antialiased
+}
+
+@font-face {
+    font-family: "Styrene Medium";
+    src: url("//common.static.burberry.com/fonts/v5/BBY-Styrene/BurberryStyreneB-Medium.eot");
+    src: url("//common.static.burberry.com/fonts/v5/BBY-Styrene/BurberryStyreneB-Medium.eot?#iefix") format("embedded-opentype"),url("//common.static.burberry.com/fonts/v5/BBY-Styrene/BurberryStyreneB-Medium.woff") format("woff"),url("//common.static.burberry.com/fonts/v5/BBY-Styrene/BurberryStyreneB-Medium.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 400;
+    -webkit-font-smoothing:antialiased
+}
+
+@font-face {
+    font-family: "Styrene Bold";
+    src: url("//common.static.burberry.com/fonts/v5/BBY-Styrene/BurberryStyreneB-Bold.eot");
+    src: url("//common.static.burberry.com/fonts/v5/BBY-Styrene/BurberryStyreneB-Bold.eot?#iefix") format("embedded-opentype"),url("//common.static.burberry.com/fonts/v5/BBY-Styrene/BurberryStyreneB-Bold.woff") format("woff"),url("//common.static.burberry.com/fonts/v5/BBY-Styrene/BurberryStyreneB-Bold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 400;
+    -webkit-font-smoothing:antialiased
+}
+
+@font-face {
+    font-family: 'noto_monoregular';
+    src: url('//creativetech.static.burberry.com/game-assets/fonts/NotoMono-Regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
